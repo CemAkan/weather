@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CemAkan/weather#readme",
   "dependencies": {
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "yargs": "^17.6.2"
   }
 }
