@@ -11,14 +11,18 @@ var argv = require("yargs")
 
 
 if(typeof argv.l === "string" && argv.l.length > 0){
-    weather(argv.l, function (currentWeather) {
-        console.log(currentWeather);
+    weather(argv.l).then(function(liveWeather){
+        console.log(liveWeather);
+    }, function(error){
+        console.log(error);
     });
 }
 else{
-    ip(function(location){
-        weather(location, function (currentWeather) {
-            console.log(currentWeather);
-        });
+    ip().then(function(location){
+        return weather(location);
+    }).then(function(liveWeather){
+        console.log(liveWeather);
+    }).catch(function(error){
+        console.log(error);
     });
-}
+};
