@@ -4,17 +4,28 @@ var url = "http://api.weatherapi.com/v1/current.json?key=";
 
 
 module.exports =  function(location, callback){
-    var finalUrl = url + key + "&q=" + location;
+   var fixedLocation =encodeURIComponent(location); // boşlukları %20 ile değiştirir.
 
-    request(finalUrl, (error, response, body)=>{
-    
+    if(!location){
+       return callback("Location can't foud");
+    }
+    else{
+        var finalUrl = url + key + "&q=" + fixedLocation;
+
+        request(finalUrl, (error, response, body)=>{
         if(error) callback("Weather infos couldn't find.");
-    
-        var data = JSON.parse(body);
-    
-        callback(`In ${data.location.name} temperature is ${data.current.temp_c}`);
-    
+
+        try{var data = JSON.parse(body);
+
+        callback(`In ${data.location.name} temperature is ${data.current.temp_c} Celcius.`);
+        }catch{
+            console.log("Please write real city name.")
+        }
     });
+
+
+    }
+
 };
 
 
