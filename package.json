@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CemAkan/weather#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "request": "^2.88.2",
     "yargs": "^17.6.2"
   }
